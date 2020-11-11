@@ -1,0 +1,89 @@
+<?php
+namespace Magepow\Customemail\Controller\Index;
+ 
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\UrlFactory;
+use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Translate\Inline\StateInterface;
+use Magepow\Customemail\Model\Mail\Template\TransportBuilder;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
+use Zend_Mime;
+ 
+ 
+class Index extends \Magento\Customer\Controller\AbstractAccount {
+    
+    public function __construct(Context $context, 
+        \Magento\Framework\Filesystem $fileSystem,
+        StateInterface $inlineTranslation,
+        TransportBuilder $transportBuilder,  
+        ScopeConfigInterface $scopeConfig,
+        UrlFactory $urlFactory, 
+        \Magento\Framework\Message\ManagerInterface $messageManager
+    ) {
+        $this->_filesystem = $fileSystem;
+        $this->urlModel = $urlFactory->create ();
+        $this->inlineTranslation = $inlineTranslation;
+        $this->_transportBuilder = $transportBuilder;
+        $this->scopeConfig = $scopeConfig;
+        $this->messageManager = $messageManager;
+        parent::__construct ( $context );
+    }
+    public function execute() {
+
+        $post = $this->getRequest()->getPostValue();
+
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $storeurl = $objectManager->get( 'Magento\Store\Model\StoreManagerInterface' )->getStore()->getBaseUrl();
+        $result = array();
+        $resultRedirect = $this->resultRedirectFactory->create ();
+        if($_FILES['fileattach']['name']){
+            try {
+                $uploader = $objectManager->create('Magento\MediaStorage\Model\File\Uploader',['fileId' => 'fileattach']);
+                $uploader->setAllowedExtensions(['docx']);
+                $uploader->setAllowRenameFiles(true);
+                $uploader->setFilesDispersion(true);
+                // get media directory
+                $mediaDirectory = $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA);
+                // save the image to media directory
+                
+                $result = $uploader->save($mediaDirectory->getAbsolutePath()."fileupload");
+                $email = $this->scopeConfig->getValue('trans_email/ident_general/email',ScopeInterface::SCOPE_STORE);
+                $name  = $this->scopeConfig->getValue('trans_email/ident_general/name',ScopeInterface::SCOPE_STORE);
+                $pdfFile = $result['path'].$result['file'];
+                $emailTemplateVariables['message'] = 'This is a test message.';
+                $this->inlineTranslation->suspend();
+                $this->_transportBuilder->setTemplateIdentifier('customemail_email_template') // Add your template name
+                  ->setTemplateOptions(
+                      [
+                          'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
+                          'store' =>  $objectManager->get( 'Magento\Store\Model\StoreManagerInterface' )->getStore()->getId(),
+                      ]
+                  )
+                  ->setTemplateVars($emailTemplateVariables)
+                  ->setFrom([
+                      'name' => $post['name'],
+                      'email' => $post['email'],
+                  ])
+                  ->addTo($email,$name)
+                  ->addAttachment(file_get_contents($pdfFile),$result['type'],Zend_Mime::DISPOSITION_ATTACHMENT,Zend_Mime::ENCODING_BASE64,$result['name']); //Attachment goes here.
+              try {
+                  $transport = $this->_transportBuilder->getTransport();
+                  $transport->sendMessage();
+                  $this->inlineTranslation->resume();
+              } catch (\Exception $e) {
+                  echo $e->getMessage(); die;
+              }
+            } catch (Exception $e) {
+                \Zend_Debug::dump($e->getMessage());
+            }
+        }else{
+            $url = $this->urlModel->getUrl ( '*/*/create', [ 
+                    '_secure' => true 
+            ] );
+            $resultRedirect->setUrl ( $this->_redirect->error ( $url ) );
+            $this->messageManager->addError(__('Please upload the document'));
+            return $resultRedirect;
+        }
+      }
+    }
