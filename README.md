@@ -31,13 +31,13 @@ php bin/magento setup:static-content:deploy -f
 
   Login to magento admin, choose `store -> Configuration -> general -> Contacts->Contact us -> Enable Contacts -> yes and in Email Options ->Send To Email -> add email you want send to email ->save.`
   
-  ![Image of magento admin config](https://github.com/magepow-teams/Display-Upsell/blob/master/media/backend-config.png)
+  ![Image of magento admin config](https://github.com/magepow-teams/magento2-customemail/blob/master/media/configemail.png)
 
   Select `yes` to enable the Enable Contacts
   
   ## 2. Result
    add to product view you want , click `Get Quote & Preview` result show a form modal send email info and image of customer want design.
-   ![Image of magento store front](https://github.com/magepow-teams/Display-Upsell/blob/master/media/2020-10-31_16-45.png)
+   ![Image of magento store front](https://github.com/magepow-teams/magento2-customemail/blob/master/media/resultfrontend.png)
    
    
  ## Donation
