@@ -1,0 +1,28 @@
+{
+  "name": "magepow/customemail",
+  "description": "Custom Email for magento 2 show a form modal send email info and image of customer want design",
+    "require": {
+    "magepow/core": "^1.0.0"
+  },
+  "type": "magento2-module",
+  "license": [
+      "OSL-3.0",
+      "AFL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "vuhoi292",
+      "email": "support@magepow.com",
+      "homepage": "https://magepow.com",
+      "role": "Technical Support"
+    }
+  ],
+  "autoload": {
+      "files": [
+          "registration.php"
+      ],
+      "psr-4": {
+          "Magepow\\Customemail\\": ""
+      }
+  }
+}
