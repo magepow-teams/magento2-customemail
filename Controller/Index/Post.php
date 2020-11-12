@@ -82,14 +82,9 @@ class Post extends \Magento\Framework\App\Action\Action
                 $filePath = $result['path'] . $result['file'];
                 $fileName = $result['name'];
             }
-            // var_dump($filePath);
-            // var_dump($fileName);
-            
             /** @see \Magento\Contact\Controller\Index\Post::validatedParams() */
             $replyToName = !empty($variables['data']['name']) ? $variables['data']['name'] : null;
             $mimeType = mime_content_type($filePath);
-            //  var_dump($mimeType);
-            // die('abs');
             $this->_inlineTranslation->suspend();
             $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
              
@@ -117,10 +112,8 @@ class Post extends \Magento\Framework\App\Action\Action
                 ->setFrom($sender)
                 ->addTo($sentToEmail,$sentToName)
                 ->createAttachment($this->file->read($filePath), $fileName, $mimeType)
-                //->addTo('owner@example.com','owner')
                 ->getTransport();
                 ;
-            // var_dump(get_class($transport));die('asdsa12');
                 $transport->sendMessage();
                  
                 $this->_inlineTranslation->resume();
