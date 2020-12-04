@@ -5,7 +5,7 @@ use Magento\Framework\App\TemplateTypesInterface;
 
 class TransportBuilder extends \Magento\Framework\Mail\Template\TransportBuilder
 {
-
+ 
     protected $message;
     protected $_attachment;
     protected $_parts = [];

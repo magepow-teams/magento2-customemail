@@ -30,6 +30,7 @@ php bin/magento setup:static-content:deploy -f
   ## 1. General configuration
 
   Login to magento admin, choose `store -> Configuration -> general -> Contacts->Contact us -> Enable Contacts -> yes and in Email Options ->Send To Email -> add email you want send to email ->save.`
+  and `store -> Configuration -> general -> Store Email Addresses -> General Contact -> Sender Email -> add email you wanr send to email -> save.`
   
   ![Image of magento admin config](https://github.com/magepow-teams/magento2-customemail/blob/master/media/configemail.png)
 
