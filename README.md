@@ -5,7 +5,7 @@ Before you continue, ensure you meet the following requirements:
   * You have installed magento2
   * You are using a Linux or Mac OS machine. Windows is not currently supported.
 
-## Step 1 : Download Magento 2 Custom-Email Extension
+## Step 1 : Download Magento 2 Custom Email Extension
 
  ## Install via composer (recommend)
 Run the following commands in Magento 2 root folder:
@@ -37,7 +37,7 @@ Run following commands
 
   Select `yes` to enable the Enable Contacts.
   
-  ## 2.2. Result
+  ### 2.2. Result
    Add to product view you want, click `Get Quote & Preview` result show a form modal send email info and image of customer want design.
    ![Image of magento store front](https://github.com/magepow-teams/magento2-customemail/blob/master/media/resultfrontend.png)
    
@@ -101,5 +101,5 @@ If this project help you reduce time to develop, you can give me a cup of coffee
 
 * [Hire Magento Developer](https://magepow.com/hire-magento-developer.html)
 
-[![Latest Stable Version](https://poser.pugx.org/magepow/productzoom/v/stable)](https://packagist.org/packages/magepow/infinitescroll)
-[![Total Downloads](https://poser.pugx.org/magepow/productzoom/downloads)](https://packagist.org/packages/magepow/infinitescroll)
+[![Latest Stable Version](https://poser.pugx.org/magepow/displayupsell/v/stable)](https://packagist.org/packages/magepow/displayupsell)
+[![Total Downloads](https://poser.pugx.org/magepow/displayupsell/downloads)](https://packagist.org/packages/magepow/displayupsell)
