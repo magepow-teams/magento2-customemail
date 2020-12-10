@@ -1,11 +1,11 @@
-# magento2-custom-email
+# Magento 2 Custom Email
 
 Before you continue, ensure you meet the following requirements:
 
   * You have installed magento2
   * You are using a Linux or Mac OS machine. Windows is not currently supported.
 
-# Step 1 : Download Magento 2 Custom-Email Extension
+## Step 1 : Download Magento 2 Custom-Email Extension
 
  ## Install via composer (recommend)
 Run the following commands in Magento 2 root folder:
@@ -14,10 +14,11 @@ composer require magepow/displayupsell
 php bin/magento setup:upgrade
 php bin/magento setup:static-content:deploy -f
 ```
-  ## Install manual
+  ### Install manual
   
-* extract file from archive
-* deploy file into Magento2 folder `app/code/Magepow/Customemail`. Run following commands
+* extract file from archive.
+* deploy file into Magento2 folder `app/code/Magepow/Customemail`. 
+Run following commands
 
  ```
  php bin/magento setup:upgrade
@@ -25,19 +26,19 @@ php bin/magento setup:static-content:deploy -f
  php bin/magento cache:flush
  ```
 
-# Step 2: User guide
+## Step 2: User guide
 
-  ## 1. General configuration
+  ### 2.1. General configuration
 
-  Login to magento admin, choose `store -> Configuration -> general -> Contacts->Contact us -> Enable Contacts -> yes and in Email Options ->Send To Email -> add email you want send to email ->save.`
-  and `store -> Configuration -> general -> Store Email Addresses -> General Contact -> Sender Email -> add email you wanr send to email -> save.`
+  `Login to Magento admin > Stores > Configuration > General > Contacts > Contact us > Enable Contacts > Yes and in Email Options > Send To Email > Add email you want send to email > Save.`
+  and `Store > Configuration -> General -> Store Email Addresses -> General Contact -> Sender Email -> Add email you wanr send to email -> Save.`
   
   ![Image of magento admin config](https://github.com/magepow-teams/magento2-customemail/blob/master/media/configemail.png)
 
-  Select `yes` to enable the Enable Contacts
+  Select `yes` to enable the Enable Contacts.
   
-  ## 2. Result
-   add to product view you want , click `Get Quote & Preview` result show a form modal send email info and image of customer want design.
+  ## 2.2. Result
+   Add to product view you want, click `Get Quote & Preview` result show a form modal send email info and image of customer want design.
    ![Image of magento store front](https://github.com/magepow-teams/magento2-customemail/blob/master/media/resultfrontend.png)
    
    
