@@ -10,21 +10,10 @@ Before you continue, ensure you meet the following requirements:
  ## Install via composer (recommend)
 Run the following commands in Magento 2 root folder:
 ```
-composer require magepow/displayupsell
+composer require magepow/customemail
 php bin/magento setup:upgrade
 php bin/magento setup:static-content:deploy -f
 ```
-  ### Install manual
-  
-* extract file from archive.
-* deploy file into Magento2 folder `app/code/Magepow/Customemail`. 
-Run following commands
-
- ```
- php bin/magento setup:upgrade
- php bin/magento setup:static-content:deploy -f
- php bin/magento cache:flush
- ```
 
 ## Step 2: User guide
 
